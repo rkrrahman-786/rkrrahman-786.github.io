@@ -4,12 +4,14 @@ venv/
 env/
 ENV/
 
-# Python
+# Python (scraper - kept local only)
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
+scrape_josaa_interactive.py
+requirements.txt
 build/
 develop-eggs/
 dist/
