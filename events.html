@@ -145,8 +145,29 @@
       gap: 8px;
     }
 
-    .event-time::before {
-      content: '🕐';
+    .icon {
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #FFD700;
+    }
+
+    .icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .event-meta-item .icon {
+      color: #FFD700;
+      width: 16px;
+      height: 16px;
     }
 
     .event-title {
@@ -389,6 +410,23 @@
     </nav>
   </header>
 
+  <!-- Hero Section with SVG Background -->
+  <section style="position: relative; overflow: hidden; padding: 80px 20px; background: linear-gradient(135deg, rgba(255, 215, 0, 0.08) 0%, rgba(255, 165, 0, 0.05) 100%); border-bottom: 1px solid rgba(255, 215, 0, 0.1);">
+    <svg style="position: absolute; top: -50px; right: -50px; width: 400px; height: 400px; opacity: 0.1;" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="80" fill="none" stroke="#FFD700" stroke-width="2"/>
+      <circle cx="100" cy="100" r="60" fill="none" stroke="#FFA500" stroke-width="2"/>
+      <circle cx="100" cy="100" r="40" fill="none" stroke="#FFD700" stroke-width="2"/>
+    </svg>
+    <div style="position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; text-align: center;">
+      <div style="display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; background: rgba(255, 215, 0, 0.1); padding: 10px 20px; border-radius: 30px; border: 1px solid rgba(255, 215, 0, 0.2);">
+        <svg style="width: 20px; height: 20px; color: #FFD700;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        <span style="color: #FFD700; font-weight: 600; font-size: 0.9rem;">Featured Events</span>
+      </div>
+      <h1 style="font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #FFD700, #FFA500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 20px 0; line-height: 1.2;">Master Your Future</h1>
+      <p style="font-size: 1.2rem; color: #ccc; max-width: 700px; margin: 0 auto; line-height: 1.6;">Join expert-led seminars and webinars designed specifically for NRI students pursuing engineering education in India</p>
+    </div>
+  </section>
+
   <main>
     <div class="events-container">
       <a href="index.html" class="back-link">Back to Home</a>
@@ -398,74 +436,8 @@
         <p>Join our exclusive webinars and seminars tailored for NRI students pursuing engineering in India</p>
       </div>
 
-      <div class="events-grid">
-        <!-- Event 1 -->
-        <div class="event-card">
-          <span class="event-badge">Webinar</span>
-          <div class="event-date">Dec 15, 2025</div>
-          <div class="event-time">2:00 PM - 3:30 PM IST</div>
-          <h3 class="event-title">JOSAA Seat Allotment Decoded</h3>
-          <p class="event-description">
-            Understand the complete JOSAA seat allotment process, ranking system, and strategies to maximize your chances of getting your dream seat.
-          </p>
-          <div class="event-meta">
-            <div class="event-meta-item">👥 <strong>Speakers:</strong> IIT Counselors</div>
-            <div class="event-meta-item">📍 <strong>Mode:</strong> Online (Zoom)</div>
-            <div class="event-meta-item">🎓 <strong>Duration:</strong> 90 minutes</div>
-          </div>
-          <button class="event-register-btn" onclick="document.querySelector('.booking-section').scrollIntoView({behavior: 'smooth'})">Register Now</button>
-        </div>
-
-        <!-- Event 2 -->
-        <div class="event-card">
-          <span class="event-badge">Seminar</span>
-          <div class="event-date">Dec 22, 2025</div>
-          <div class="event-time">10:00 AM - 11:30 AM IST</div>
-          <h3 class="event-title">NRI Quota: Myths vs Reality</h3>
-          <p class="event-description">
-            Exclusive session on NRI admissions quota, eligibility criteria, and step-by-step process for NRI applicants applying to premier institutes.
-          </p>
-          <div class="event-meta">
-            <div class="event-meta-item">👥 <strong>Speakers:</strong> Admissions Directors</div>
-            <div class="event-meta-item">📍 <strong>Mode:</strong> Online (Teams)</div>
-            <div class="event-meta-item">🎓 <strong>Duration:</strong> 90 minutes</div>
-          </div>
-          <button class="event-register-btn" onclick="document.querySelector('.booking-section').scrollIntoView({behavior: 'smooth'})">Register Now</button>
-        </div>
-
-        <!-- Event 3 -->
-        <div class="event-card">
-          <span class="event-badge">Workshop</span>
-          <div class="event-date">Dec 29, 2025</div>
-          <div class="event-time">4:00 PM - 5:30 PM IST</div>
-          <h3 class="event-title">Engineering Cutoff Trends Analysis</h3>
-          <p class="event-description">
-            Deep dive into 5-year cutoff trends across IITs, NITs, and IIEST. Learn how to predict cutoffs and make informed choices.
-          </p>
-          <div class="event-meta">
-            <div class="event-meta-item">👥 <strong>Speakers:</strong> Data Analysts</div>
-            <div class="event-meta-item">📍 <strong>Mode:</strong> Online + In-Person</div>
-            <div class="event-meta-item">🎓 <strong>Duration:</strong> 90 minutes</div>
-          </div>
-          <button class="event-register-btn" onclick="document.querySelector('.booking-section').scrollIntoView({behavior: 'smooth'})">Register Now</button>
-        </div>
-
-        <!-- Event 4 -->
-        <div class="event-card">
-          <span class="event-badge">Panel Discussion</span>
-          <div class="event-date">Jan 10, 2026</div>
-          <div class="event-time">6:00 PM - 7:30 PM IST</div>
-          <h3 class="event-title">Career Pathways in Engineering</h3>
-          <p class="event-description">
-            Industry experts and alumni share insights on career opportunities, placements, and entrepreneurship in the tech sector.
-          </p>
-          <div class="event-meta">
-            <div class="event-meta-item">👥 <strong>Panelists:</strong> Industry Leaders & Alumni</div>
-            <div class="event-meta-item">📍 <strong>Mode:</strong> Online</div>
-            <div class="event-meta-item">🎓 <strong>Duration:</strong> 90 minutes</div>
-          </div>
-          <button class="event-register-btn" onclick="document.querySelector('.booking-section').scrollIntoView({behavior: 'smooth'})">Register Now</button>
-        </div>
+      <div class="events-grid" id="eventsContainer">
+        <!-- Events loaded dynamically from CSV -->
       </div>
 
       <!-- Booking Section -->
@@ -509,11 +481,7 @@
             <label for="event">Select Event(s) of Interest *</label>
             <select id="event" name="event" required>
               <option value="">Choose an event</option>
-              <option value="JOSAA Seat Allotment Decoded">JOSAA Seat Allotment Decoded (Dec 15)</option>
-              <option value="NRI Quota: Myths vs Reality">NRI Quota: Myths vs Reality (Dec 22)</option>
-              <option value="Engineering Cutoff Trends Analysis">Engineering Cutoff Trends Analysis (Dec 29)</option>
-              <option value="Career Pathways in Engineering">Career Pathways in Engineering (Jan 10)</option>
-              <option value="All Events">All Events</option>
+              <!-- Options populated from CSV -->
             </select>
           </div>
 
@@ -524,7 +492,7 @@
 
           <!-- Placeholder for Microsoft Forms Integration -->
           <div style="background: rgba(255, 215, 0, 0.1); padding: 20px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
-            <p style="color: #FFD700; font-weight: 600; margin: 0;">📋 Microsoft Forms Integration</p>
+            <p style="color: #FFD700; font-weight: 600; margin: 0;">Microsoft Forms Integration</p>
             <p style="color: #999; margin: 8px 0 0 0; font-size: 0.9rem;">Connect to Microsoft Forms for advanced form handling and data collection</p>
           </div>
 
@@ -540,8 +508,95 @@
   </footer>
 
   <script>
+    let eventsData = [];
+
+    // Parse CSV data
+    function parseCSV(csv) {
+      const lines = csv.trim().split('\n');
+      const headers = lines[0].split(',');
+      const events = [];
+      
+      for (let i = 1; i < lines.length; i++) {
+        const obj = {};
+        const currentline = lines[i].split(',');
+        
+        for (let j = 0; j < headers.length; j++) {
+          obj[headers[j].trim()] = currentline[j] ? currentline[j].trim() : '';
+        }
+        events.push(obj);
+      }
+      return events;
+    }
+
+    // Load and process CSV file
+    async function loadEvents() {
+      try {
+        const response = await fetch('events.csv');
+        const csvText = await response.text();
+        eventsData = parseCSV(csvText);
+        
+        renderEvents();
+        populateEventDropdown();
+      } catch (error) {
+        console.error('Error loading events:', error);
+      }
+    }
+
+    // Render event cards
+    function renderEvents() {
+      const container = document.getElementById('eventsContainer');
+      container.innerHTML = '';
+      
+      eventsData.forEach((event, index) => {
+        const eventCard = document.createElement('div');
+        eventCard.className = 'event-card';
+        eventCard.style.animationDelay = (index * 0.1) + 's';
+        
+        eventCard.innerHTML = `
+          <span class="event-badge">${event.type}</span>
+          <div class="event-date">${event.date}</div>
+          <div class="event-time">
+            <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+            ${event.time}
+          </div>
+          <h3 class="event-title">${event.title}</h3>
+          <p class="event-description">${event.description}</p>
+          <div class="event-meta">
+            <div class="event-meta-item">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" fill="none"/><path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="2" fill="none"/><path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+              <strong>Speakers:</strong> ${event.speakers}
+            </div>
+            <div class="event-meta-item">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="3" fill="currentColor"/></svg>
+              <strong>Mode:</strong> ${event.mode}
+            </div>
+            <div class="event-meta-item">
+              <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+              <strong>Duration:</strong> ${event.duration}
+            </div>
+          </div>
+          <button class="event-register-btn" onclick="document.querySelector('.booking-section').scrollIntoView({behavior: 'smooth'})">Register Now</button>
+        `;
+        container.appendChild(eventCard);
+      });
+    }
+
+    // Populate event dropdown
+    function populateEventDropdown() {
+      const select = document.getElementById('event');
+      
+      eventsData.forEach(event => {
+        const option = document.createElement('option');
+        option.value = event.title;
+        option.textContent = `${event.title} (${event.date})`;
+        select.appendChild(option);
+      });
+    }
+
     // Smooth scroll on page load if hash is present
     window.addEventListener('load', () => {
+      loadEvents();
+      
       if (window.location.hash) {
         const element = document.querySelector(window.location.hash);
         if (element) {
