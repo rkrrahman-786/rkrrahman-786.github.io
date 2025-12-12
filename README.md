@@ -12,6 +12,7 @@ An interactive web-based tool to view and search JOSAA (Joint Seat Allocation Au
 - 📊 **Results Table** – Display allotment data (Institute, Program, Rank, Quota, etc.)
 - 🔍 **Real-time Search & Filter** – Find seats by institute, program, category, quota, and more
 - 📱 **Responsive Design** – Works seamlessly on desktop, tablet, and mobile devices
+- 📈 **SEO Optimized** – Discoverable via Google Search with full meta tags, sitemap, and structured data
 
 ---
 
@@ -42,6 +43,37 @@ The web interface is hosted at **[rkrrahman-786.github.io](https://rkrrahman-786
 Simply visit: **https://rkrrahman-786.github.io**
 
 No setup required – it's a static web app deployed via Render.
+
+---
+
+## SEO & Search Engine Visibility
+
+This site is fully optimized for Google Search and other search engines:
+
+### What's Included
+
+✅ **Meta Tags** – Title, description, keywords, author, robots directives  
+✅ **Open Graph & Twitter Cards** – Social media preview optimization  
+✅ **Sitemap** (`sitemap.xml`) – Tells Google what pages to index  
+✅ **Robots.txt** – Guides crawler behavior and points to sitemap  
+✅ **Structured Data** (`schema.org`) – Rich snippets for better SERP appearance  
+✅ **Canonical URL** – Prevents duplicate content issues  
+✅ **Mobile-Friendly** – Responsive design for all devices  
+✅ **Fast Load Times** – Static site hosting on Render (CDN-backed)
+
+### Indexing Status
+
+- **Google Search Console:** Submit `https://rkrrahman-786.github.io/sitemap.xml`
+- **Bing Webmaster Tools:** Add site for indexing
+- **Search Time:** Usually indexed within 24-48 hours after first Google crawl
+
+### Keywords Targeted
+
+- JOSAA seat allotment
+- IIT NIT results
+- Engineering college admissions
+- IIEST IIIT seats
+- India engineering cutoff
 
 ---
 
