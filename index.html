@@ -7,358 +7,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #050608;
-      --bg-alt: #0d1119;
-      --panel: #121828;
-      --text: #f5f7fb;
-      --muted: #9aa3c7;
-      --orange: #ff7a18;
-      --orange-soft: rgba(255, 122, 24, 0.18);
-      --blue: #2fc4ff;
-      --blue-soft: rgba(47, 196, 255, 0.2);
-      --border: rgba(255, 255, 255, 0.06);
-      font-size: 16px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: radial-gradient(circle at top, rgba(47, 196, 255, 0.08), transparent 55%), var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .cursor-orb {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      pointer-events: none;
-      background: radial-gradient(circle, rgba(255, 122, 24, 0.5), rgba(255, 122, 24, 0));
-      mix-blend-mode: screen;
-      transition: transform 0.15s ease, opacity 0.2s ease, background 0.3s ease;
-      z-index: 2000;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      backdrop-filter: blur(16px);
-      background: rgba(5, 6, 8, 0.6);
-      border-bottom: 1px solid var(--border);
-      z-index: 100;
-    }
-
-    nav {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .logo img {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      object-fit: cover;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.95rem;
-      letter-spacing: 0.02em;
-      position: relative;
-      transition: color 0.2s ease;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -0.4rem;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, var(--orange), var(--blue));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.25s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-links a:hover::after {
-      transform: scaleX(1);
-    }
-
-    .primary-btn {
-      background: linear-gradient(135deg, var(--orange), var(--blue));
-      color: var(--bg);
-      border: none;
-      padding: 0.85rem 1.9rem;
-      border-radius: 999px;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      box-shadow: 0 10px 30px rgba(255, 122, 24, 0.35);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .primary-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 15px 35px rgba(47, 196, 255, 0.4);
-    }
-
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 4rem 2rem 5rem;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 3rem;
-      align-items: center;
-      padding: 4rem 0;
-    }
-
-    .hero-content h1 {
-      font-size: clamp(2.8rem, 5vw, 4rem);
-      margin-bottom: 1.2rem;
-      line-height: 1.1;
-    }
-
-    .hero-content h1 span {
-      color: var(--orange);
-    }
-
-    .hero-content p {
-      color: var(--muted);
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-    }
-
-    .hero-meta {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .stat-chip {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      padding: 1rem 1.5rem;
-      border-radius: 16px;
-      min-width: 180px;
-    }
-
-    .stat-chip strong {
-      display: block;
-      font-size: 1.4rem;
-      margin-bottom: 0.25rem;
-      color: var(--blue);
-    }
-
-    .hero-card {
-      background: var(--panel);
-      border-radius: 24px;
-      padding: 2.5rem;
-      border: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
-    }
-
-    .hero-card::before,
-    .hero-card::after {
-      content: '';
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      border-radius: 40%;
-      filter: blur(60px);
-      opacity: 0.3;
-    }
-
-    .hero-card::before {
-      top: -60px;
-      right: -80px;
-      background: var(--orange-soft);
-    }
-
-    .hero-card::after {
-      bottom: -80px;
-      left: -90px;
-      background: var(--blue-soft);
-    }
-
-    section {
-      margin-top: 4.5rem;
-    }
-
-    .section-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .section-heading h2 {
-      margin: 0;
-      font-size: 2rem;
-    }
-
-    .section-heading p {
-      margin: 0;
-      color: var(--muted);
-      max-width: 520px;
-      line-height: 1.5;
-    }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .card {
-      background: var(--panel);
-      border-radius: 20px;
-      padding: 1.8rem;
-      border: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255, 122, 24, 0.12), rgba(47, 196, 255, 0.12));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: 0;
-    }
-
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    .card h3 {
-      margin-top: 0;
-      margin-bottom: 0.75rem;
-      font-size: 1.3rem;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.35rem 0.8rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      background: rgba(47, 196, 255, 0.18);
-      color: var(--blue);
-      margin-bottom: 0.9rem;
-    }
-
-    .membership {
-      background: linear-gradient(135deg, rgba(47, 196, 255, 0.2), rgba(255, 122, 24, 0.2));
-      border-radius: 28px;
-      padding: 3rem;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
-      align-items: center;
-    }
-
-    .membership ul {
-      margin: 1rem 0 0;
-      padding-left: 1rem;
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    footer {
-      text-align: center;
-      padding: 3rem 2rem 4rem;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      margin-top: 4rem;
-    }
-
-    @media (max-width: 640px) {
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav-links {
-        flex-wrap: wrap;
-      }
-
-      .hero {
-        padding: 3rem 0;
-      }
-
-      .hero-card {
-        padding: 2rem;
-      }
-
-      .membership {
-        padding: 2rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="cursor-orb" aria-hidden="true"></div>
 
-  <header>
+  <header data-animate>
     <nav>
       <a href="#hero" class="logo">
         <img src="assets/ea-logo.avif" alt="EduAakashaa logo">
@@ -370,126 +24,231 @@
         <a href="#membership">Membership</a>
         <a href="#contact">Contact</a>
       </div>
-      <a href="#membership" class="primary-btn">Join Membership</a>
+      <a href="#membership" class="gold-btn">Join Membership</a>
     </nav>
   </header>
 
   <main>
-    <section class="hero" id="hero">
-      <div class="hero-content">
+    <section class="hero" id="hero" data-animate>
+      <div class="hero-content" data-animate>
         <p class="pill">NRI Student Success Hub</p>
         <h1>Your <span>Global Gateway</span> to Premier Indian Engineering Seats</h1>
-        <p>Fast-track your DASA, JoSAA, and state counseling journey with guidance designed specifically for international students and NRIs. Personalized roadmaps, visa-ready documentation, and round-the-clock mentors keep you aligned with every critical deadline.</p>
+        <p>Navigate DASA (NITs/IIITs/CFTIs), JEE Advanced (IIT supernumerary seats), IIIT-Hyderabad (SAT-based), and state-level quotas (Tamil Nadu, Maharashtra, Gujarat, and more) with expert guidance for 2025–26 admissions. Personalized roadmaps, embassy-certified documentation, and round-the-clock support keep you aligned with every critical deadline.</p>
         <div class="hero-meta">
           <div class="stat-chip">
             <strong>5K+</strong>
-            Global admits coached through DASA & JoSAA
+            Global admits coached through DASA, JEE & state quotas
           </div>
           <div class="stat-chip">
-            <strong>110+</strong>
-            Partner colleges across IIT, NIT & IIIT network
+            <strong>2025–26</strong>
+            Current admission cycle support across all schemes
           </div>
         </div>
       </div>
-      <div class="hero-card">
-        <h3>Stay Ahead of Every Counseling Round</h3>
-        <p>Live seat matrix updates, curated choice lists, and checklist-based document prep so you never miss a reporting window.</p>
+      <div class="hero-card" data-animate>
+        <h3>Stay Ahead of Every Application Window</h3>
+        <p>Track DASA (Mar–May), JEE Advanced (Apr), IIIT-H (Mar 24–May 22), Anna University (Apr 1), Maharashtra CAP (Jul 1), and other state deadlines. Get curated choice lists, embassy document verification, and real-time seat availability updates.</p>
         <div style="margin: 2rem 0;">
-          <div class="pill" style="background: rgba(255, 122, 24, 0.15); color: var(--orange);">Priority Alerts</div>
-          <div class="pill">Visa & Travel Support</div>
+          <div class="pill" style="background: rgba(255, 122, 24, 0.15); color: var(--orange);">2025–26 Deadlines</div>
+          <div class="pill">Fee Planning</div>
         </div>
-        <a class="primary-btn" href="#membership">Get Personalized Plan</a>
+        <a class="gold-btn" href="#membership">Get Personalized Plan</a>
       </div>
     </section>
 
-    <section id="opportunities">
-      <div class="section-heading">
+    <section id="opportunities" data-animate>
+      <div class="section-heading" data-animate>
         <div>
-          <h2>Opportunities for NRI Students</h2>
-          <p>Unlock DASA, ICCR, JoSAA, and state-level seats reserved for overseas citizens with intel on cut-offs, quotas, and fee structures tailor-made for global applicants.</p>
+          <h2>Opportunities for NRI Students (2025–26)</h2>
+          <p>Navigate national and state-level admission routes for B.E./B.Tech. in India. Each scheme details NRI-specific eligibility, timelines, reserved seats, required documents, fees, and relevant exams.</p>
         </div>
       </div>
       <div class="cards-grid">
-        <article class="card">
-          <div class="pill">DASA / CIWG</div>
-          <h3>Global Quota Seat Mapping</h3>
-          <p>Identify the best-fit NITs, IIITs, and premier private colleges using your SAT/JEE scores, currency preferences, and location goals.</p>
+        <article class="card" data-animate>
+          <div class="pill">DASA</div>
+          <h3>Direct Admission to NITs, IIITs & CFTIs</h3>
+          <p><strong>Eligibility:</strong> Foreign Nationals/NRIs/OCIs/PIOs with ≥75% in 10+2 (PCM). Indian nationals need 2+ years studied abroad.<br><br><strong>Basis:</strong> JEE Main rank (UG admissions from 2024–25 onward).<br><br><strong>Timeline:</strong> Apply Mar–May 2025 on dasanit.org. Counseling/Results: June–July 2025.<br><br><strong>Fees:</strong> Varies by institute; e.g., IIIT-Hyderabad: USD 14,000/year (~₹11.96L).</p>
         </article>
-        <article class="card">
-          <div class="pill" style="background: rgba(255, 122, 24, 0.15); color: var(--orange);">JoSAA</div>
-          <h3>Round-by-Round Playbooks</h3>
-          <p>Simulate multiple choice-filling strategies with live closing ranks to secure the highest possible IIT/NIT allotment.</p>
+        <article class="card" data-animate>
+          <div class="pill" style="background: rgba(255, 122, 24, 0.15); color: var(--orange);">JEE Advanced (IITs)</div>
+          <h3>IIT Supernumerary Seats</h3>
+          <p><strong>Eligibility:</strong> Foreign nationals (including OCI post-Mar 2021) can apply as foreign—bypass JEE Main, register directly for JEE Advanced. NRI (Indian passport) appear as Indians.<br><br><strong>Basis:</strong> JEE Advanced rank.<br><br><strong>Quota:</strong> 10% supernumerary seats per course for foreign nationals.<br><br><strong>Timeline:</strong> JEE Adv registration in Apr 2025.</p>
         </article>
-        <article class="card">
-          <div class="pill">TNEA & State</div>
-          <h3>State Counseling Concierge</h3>
-          <p>Dedicated experts for Tamil Nadu and other state processes covering nativity proof, reservation claims, and certificate attestation.</p>
+        <article class="card" data-animate>
+          <div class="pill">IIIT Hyderabad (SAT)</div>
+          <h3>SAT-Based DASA Admissions</h3>
+          <p><strong>Eligibility:</strong> 11th–12th outside India (or foreign passport holders). SAT score ≥1070/1600 mandatory.<br><br><strong>Basis:</strong> SAT scores (not JEE).<br><br><strong>Timeline:</strong> Apply Mar 24–May 22, 2025. Application fee: INR 8,000.<br><br><strong>Seats:</strong> CSE: 25; ECE: 10; Dual-degree: 6 total.<br><br><strong>Fees:</strong> USD 14,000/year; 1st sem: USD 7,000 (~₹5.98L) + ₹10,000 admission.</p>
         </article>
-        <article class="card">
-          <div class="pill">Scholarships</div>
-          <h3>Funding Pathways</h3>
-          <p>Access curated bursaries, ICCR schemes, and institutional scholarships that reduce your total cost of attendance.</p>
+        <article class="card" data-animate>
+          <div class="pill">Tamil Nadu (Anna University)</div>
+          <h3>State NRI Quota (5%)</h3>
+          <p><strong>Eligibility:</strong> Parent/guardian with embassy-issued NRI certificate (post-Mar 2025). 45% aggregate in PCM (10+2).<br><br><strong>Basis:</strong> 12th-grade merit (no entrance exam required).<br><br><strong>Timeline:</strong> Registration from Apr 1, 2025 on cfa.annauniv.edu.<br><br><strong>Quota:</strong> 5% seats NRI + 5% CIWGC per branch.<br><br><strong>Fees:</strong> Registration ~US$250 (+GST) non-refundable; higher tuition for NRI seats.</p>
+        </article>
+        <article class="card" data-animate>
+          <div class="pill">Maharashtra (CAP)</div>
+          <h3>Integrated NRI Portal</h3>
+          <p><strong>Eligibility:</strong> NRI as per Income Tax definition. NRI/OCI/PIO/children of Indian workers abroad.<br><br><strong>Basis:</strong> CAP counseling (12th marks/CET/JEE Main).<br><br><strong>Timeline:</strong> Registration starts ~Jul 1, 2025 on fn.mahacet.org.<br><br><strong>Fees:</strong> USD 50 (eligibility) + USD 1,150 (processing, refundable if visa rejected).<br><br><strong>Quota:</strong> Supernumerary seats across participating colleges.</p>
+        </article>
+        <article class="card" data-animate>
+          <div class="pill">Gujarat (ACPC) & Others</div>
+          <h3>State Management Quotas</h3>
+          <p><strong>Gujarat:</strong> ~15% seats NRI/NRI-sponsored via ACPC counseling. Eligibility: NRI status proof; 45% PCM. Fees: 15–25× regular tuition.<br><br><strong>Other States:</strong> Andhra Pradesh, Telangana (EAPCET), Kerala (KEAM), West Bengal (WBJEE) offer NRI quotas. Consult respective state CET cells for 2025–26 details.</p>
         </article>
       </div>
     </section>
 
-    <section id="services">
-      <div class="section-heading">
+    <section id="services" data-animate>
+      <div class="section-heading" data-animate>
         <div>
           <h2>How We Guide You</h2>
-          <p>From eligibility checks to relocation, every touchpoint is designed for remote families seeking trusted on-ground support.</p>
+          <p>Comprehensive support at every stage of your admission journey, from initial eligibility checks to final campus enrollment.</p>
         </div>
-        <a href="#membership" class="primary-btn" style="padding: 0.7rem 1.4rem;">Talk to an Advisor</a>
+        <a href="#membership" class="gold-btn" style="padding: 0.7rem 1.4rem;">Talk to an Advisor</a>
       </div>
       <div class="cards-grid">
-        <article class="card">
+        <article class="card" data-animate>
           <h3>Eligibility & Documentation</h3>
-          <p>Multi-country documentation templates, affidavit support, and embassy attestation checklists tailored to your passport country.</p>
+          <p>We help verify your eligibility across all admission schemes and guide you through the complete documentation process, including embassy certificates, academic records, and all required attestations.</p>
         </article>
-        <article class="card">
-          <h3>Application Acceleration</h3>
-          <p>We manage form submissions, fee payments, and reporting, so your family stays informed without chasing portals.</p>
+        <article class="card" data-animate>
+          <h3>Application & Portal Management</h3>
+          <p>Navigate complex application portals with confidence. We assist with form submissions, document uploads, fee payments, and choice filling across all admission schemes.</p>
         </article>
-        <article class="card">
-          <h3>Test Mentorship</h3>
-          <p>Access partner mentors for JEE/SAT prep with time-zone-aligned classes and adaptive analytics.</p>
+        <article class="card" data-animate>
+          <h3>Test Preparation & Strategy</h3>
+          <p>Get personalized guidance for JEE Main, JEE Advanced, and SAT preparation with time-zone-aligned coaching, mock tests, and strategic rank optimization.</p>
         </article>
-        <article class="card">
-          <h3>Relocation Playbook</h3>
-          <p>Visa guidance, housing briefs, and travel checklists help you move from acceptance to campus with confidence.</p>
+        <article class="card" data-animate>
+          <h3>Fee Structure & Financial Planning</h3>
+          <p>Understand fee structures across different schemes and colleges. We help plan payments, explore scholarship opportunities, and navigate currency conversions.</p>
+        </article>
+        <article class="card" data-animate>
+          <h3>Timeline & Deadline Management</h3>
+          <p>Never miss a critical deadline. We maintain your personalized calendar, send priority alerts, and ensure you stay ahead of all application windows and counseling rounds.</p>
         </article>
       </div>
     </section>
 
-    <section class="membership" id="membership">
+    <section class="membership" id="membership" data-animate>
       <div>
         <p class="pill" style="background: rgba(0, 0, 0, 0.2); color: var(--text);">Membership Invite</p>
         <h2>EduAakashaa NRI Membership</h2>
         <p style="color: var(--text); line-height: 1.6;">Get a dedicated counselor, curated dashboards, and WhatsApp priority support for the entire admission season. We keep your family informed, prepared, and confident.</p>
       </div>
       <div>
-        <h3>What’s Included</h3>
-        <ul>
-          <li>Custom admission blueprint + calendar sync</li>
-          <li>Bi-weekly progress reviews with counselors</li>
-          <li>Visa, loan, and travel escalation desk</li>
-          <li>Invite-only webinars with alumni mentors</li>
+        <h3>What's Included</h3>
+        <ul class="premium-features">
+          <li><svg class="feature-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>2-hour personalized one-on-one sessions with experienced mentors and industry experts</li>
+          <li><svg class="feature-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Advanced analytics with data-driven insights on cut-offs, ranks, and scores</li>
+          <li><svg class="feature-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Personalized course selection guidance from subject matter experts</li>
+          <li><svg class="feature-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Strategic college selection recommendations tailored to your profile</li>
+          <li><svg class="feature-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Automated reminders for all college admission deadlines and important dates</li>
+          <li><svg class="feature-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Timely alerts for entrance exam registrations, dates, and preparation milestones</li>
         </ul>
-        <a class="primary-btn" href="mailto:hello@EduAakashaa.com?subject=EduAakashaa NRI Membership" style="margin-top: 1.5rem;">Reserve a Slot</a>
+        <button class="gold-btn" id="reserveSlotBtn" style="margin-top: 1.5rem; cursor: pointer;">Reserve a Slot</button>
       </div>
     </section>
 
-    <section id="contact">
-      <div class="section-heading">
+    <section id="useful-links" data-animate>
+      <div class="section-heading" data-animate>
+        <div>
+          <h2>Useful Official Links for NRI Aspirants</h2>
+          <p>Bookmark these trusted government and institute portals for admissions, brochures, and NRI-specific updates for the 2025–26 cycle.</p>
+        </div>
+      </div>
+      <div class="cards-grid">
+        <article class="card" data-animate>
+          <h3>Central Entrance Exams & Schemes</h3>
+          <ul class="link-list">
+            <li>
+              <strong>DASA (Direct Admission of Students Abroad) 2025–26</strong>
+              <span>Official Ministry of Education scheme for NRIs/OCIs/PIOs into NITs, IIITs and other CFTIs (non-IIT).</span><br>
+              <a href="https://dasanit.org/dasa2025/" target="_blank" rel="noopener">dasanit.org/dasa2025</a>
+            </li>
+            <li>
+              <strong>JEE (Main) 2025 – NTA</strong>
+              <span>National Testing Agency portal for JEE Main, required for most B.E./B.Tech admissions (including NRI).</span><br>
+              <a href="https://jeemain.nta.nic.in/" target="_blank" rel="noopener">jeemain.nta.nic.in</a>
+            </li>
+            <li>
+              <strong>JEE (Advanced) 2025 – IIT Kanpur</strong>
+              <span>Official IIT-JEE Advanced portal for IIT admissions, including foreign/NRI candidates.</span><br>
+              <a href="https://jeeadv.ac.in/" target="_blank" rel="noopener">jeeadv.ac.in</a>
+            </li>
+          </ul>
+        </article>
+
+        <article class="card" data-animate>
+          <h3>Institute Admission Portals (NRI Categories)</h3>
+          <ul class="link-list">
+            <li>
+              <strong>IIIT Hyderabad – DASA Admissions</strong>
+              <span>SAT-based DASA UG admissions for NRI/foreign applicants (2025–26).</span><br>
+              <a href="https://ugadmissions.iiit.ac.in/dasa/" target="_blank" rel="noopener">ugadmissions.iiit.ac.in/dasa</a>
+            </li>
+            <li>
+              <strong>VIT Vellore – NRI B.Tech Admissions</strong>
+              <span>International/NRI B.Tech application portal for NRIs and foreign nationals.</span><br>
+              <a href="https://admissions.vit.ac.in/ugnriapplication/login" target="_blank" rel="noopener">admissions.vit.ac.in/ugnriapplication/login</a>
+            </li>
+          </ul>
+        </article>
+
+        <article class="card" data-animate>
+          <h3>State-Level Admission Authorities</h3>
+          <ul class="link-list">
+            <li>
+              <strong>Anna University – Centre for Admissions (Tamil Nadu)</strong>
+              <span>UG engineering admissions portal with dedicated NRI/FN/OCI categories.</span><br>
+              <a href="http://cfa.annauniv.edu/cfa/" target="_blank" rel="noopener">cfa.annauniv.edu/cfa</a>
+            </li>
+            <li>
+              <strong>Maharashtra State CET Cell – Foreign/NRI Portal</strong>
+              <span>Integrated foreign/NRI/OCI/PIO/CIWGC portal for UG professional courses.</span><br>
+              <a href="https://fn.mahacet.org/" target="_blank" rel="noopener">fn.mahacet.org</a>
+            </li>
+            <li>
+              <strong>Gujarat ACPC – Admission Committee for Professional Courses</strong>
+              <span>State admission portal including NRI/NRI-sponsored categories.</span><br>
+              <a href="https://gujacpc.admissions.nic.in/" target="_blank" rel="noopener">gujacpc.admissions.nic.in</a>
+            </li>
+          </ul>
+        </article>
+
+        <article class="card" data-animate>
+          <h3>Official Brochures & Handbooks</h3>
+          <ul class="link-list">
+            <li>
+              <strong>DASA 2025–26 UG Information Brochure</strong>
+              <span>Eligibility, seat matrix, and rules for DASA NRI/foreign UG applicants.</span><br>
+              <a href="https://dasanit.org/" target="_blank" rel="noopener">dasanit.org</a>
+            </li>
+            <li>
+              <strong>Gujarat ACPC Information Handbook</strong>
+              <span>Instructions and rules for Gujarat UG admissions (including NRI-sponsored seats).</span><br>
+              <a href="https://acpc.gujarat.gov.in/" target="_blank" rel="noopener">acpc.gujarat.gov.in</a>
+            </li>
+            <li>
+              <strong>Anna University NRI Admission Notices</strong>
+              <span>Year-wise NRI/FN admission circulars and guidelines.</span><br>
+              <a href="http://cfa.annauniv.edu/cfa/" target="_blank" rel="noopener">cfa.annauniv.edu/cfa</a>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" data-animate>
+      <div class="section-heading" data-animate>
         <div>
           <h2>Let’s Plan Your Next Move</h2>
           <p>Share your current location, target programs, and tentative timelines—we’ll assemble a starter plan within 24 hours.</p>
         </div>
       </div>
-      <div class="card" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
+      <div class="card" data-animate style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
         <div>
           <h3>Write to Us</h3>
-          <p>hello@EduAakashaa.com</p>
+          <p>info@eduAakashaa.com</p>
         </div>
         <div>
           <h3>WhatsApp Hotline</h3>
@@ -507,32 +266,19 @@
     © 2025 EduAakashaa Limited. All rights reserved.
   </footer>
 
-  <script>
-    const orb = document.querySelector('.cursor-orb');
-    let mouseX = 0;
-    let mouseY = 0;
-    let orbX = 0;
-    let orbY = 0;
+  <div class="modal-overlay" id="reserveModal">
+    <div class="modal-content">
+      <button class="modal-close" id="closeModal">&times;</button>
+      <h2>Reserve Your Slot</h2>
+      <p style="color: var(--muted); margin-bottom: 1.5rem;">Fill out the EduAakashaa NRI Membership form below and we’ll reach out within 24 hours.</p>
+      <div class="modal-iframe">
+        <iframe width="640" height="480" src="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__noDLjpURVRXQjVNNEpPMzREVzQ4SzFXVk1aRzhQRy4u&embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; width: 100%; height: 70vh; max-height: 520px;" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen></iframe>
+      </div>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-top: 1rem;">If the form doesn’t load, <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__noDLjpURVRXQjVNNEpPMzREVzQ4SzFXVk1aRzhQRy4u" target="_blank" rel="noopener" style="color: var(--blue);">open it in a new tab</a>.</p>
+    </div>
+  </div>
 
-    const updateOrb = () => {
-      orbX += (mouseX - orbX) * 0.15;
-      orbY += (mouseY - orbY) * 0.15;
-      orb.style.transform = `translate3d(${orbX - 11}px, ${orbY - 11}px, 0)`;
-      requestAnimationFrame(updateOrb);
-    };
-
-    document.addEventListener('mousemove', (event) => {
-      mouseX = event.clientX;
-      mouseY = event.clientY;
-      orb.style.opacity = 1;
-    });
-
-    document.addEventListener('mouseleave', () => {
-      orb.style.opacity = 0;
-    });
-
-    updateOrb();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
 
