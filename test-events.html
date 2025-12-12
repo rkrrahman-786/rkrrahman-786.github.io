@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events CSV Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #1a1a1a;
+      color: #fff;
+    }
+    .test-container {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .test-container h2 {
+      color: #FFD700;
+      margin-top: 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      padding: 10px;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    th {
+      background: rgba(255, 215, 0, 0.1);
+      color: #FFD700;
+    }
+    .success {
+      color: #4ade80;
+      font-weight: bold;
+    }
+    .error {
+      color: #f87171;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Events CSV Parsing Test</h1>
+  
+  <div class="test-container">
+    <h2>CSV Load Status</h2>
+    <p id="loadStatus">Loading CSV...</p>
+  </div>
+
+  <div class="test-container">
+    <h2>Events Data (<span id="eventCount">0</span> events)</h2>
+    <table id="eventsTable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Title</th>
+          <th>Time</th>
+          <th>Type</th>
+          <th>Mode</th>
+          <th>Duration</th>
+          <th>Speakers</th>
+        </tr>
+      </thead>
+      <tbody id="eventsBody"></tbody>
+    </table>
+  </div>
+
+  <div class="test-container">
+    <h2>Raw CSV Content</h2>
+    <pre id="csvContent" style="background: #000; padding: 10px; border-radius: 4px; overflow-x: auto; font-size: 0.85rem;"></pre>
+  </div>
+
+  <script>
+    async function loadAndTestEvents() {
+      try {
+        const response = await fetch('events.csv');
+        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+        
+        const csvText = await response.text();
+        document.getElementById('csvContent').textContent = csvText;
+        
+        // Parse CSV
+        const lines = csvText.trim().split('\n');
+        const headers = lines[0].split(',').map(h => h.trim());
+        const events = [];
+        
+        for (let i = 1; i < lines.length; i++) {
+          const obj = {};
+          const currentline = lines[i].split(',');
+          
+          for (let j = 0; j < headers.length; j++) {
+            obj[headers[j]] = currentline[j] ? currentline[j].trim() : '';
+          }
+          events.push(obj);
+        }
+        
+        // Display status
+        document.getElementById('loadStatus').innerHTML = 
+          `<span class="success">✓ CSV loaded successfully</span><br>` +
+          `Headers: ${headers.join(', ')}<br>` +
+          `Total Events: ${events.length}`;
+        
+        // Display events in table
+        document.getElementById('eventCount').textContent = events.length;
+        const tbody = document.getElementById('eventsBody');
+        
+        events.forEach(event => {
+          const row = tbody.insertRow();
+          row.innerHTML = `
+            <td>${event.date}</td>
+            <td>${event.title}</td>
+            <td>${event.time}</td>
+            <td><strong>${event.type}</strong></td>
+            <td>${event.mode}</td>
+            <td>${event.duration}</td>
+            <td>${event.speakers}</td>
+          `;
+        });
+        
+        console.log('Events parsed:', events);
+        
+      } catch (error) {
+        document.getElementById('loadStatus').innerHTML = 
+          `<span class="error">✗ Error loading CSV: ${error.message}</span>`;
+        console.error('Error:', error);
+      }
+    }
+    
+    // Load on page load
+    window.addEventListener('load', loadAndTestEvents);
+  </script>
+</body>
+</html>
