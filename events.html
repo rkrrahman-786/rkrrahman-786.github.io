@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags (SEO) -->
+  <title>Events & Seminars | EduAakashaa - NRI Admissions Events</title>
+  <meta name="title" content="Events & Seminars | EduAakashaa - NRI Admissions Events">
+  <meta name="description" content="Upcoming webinars, seminars, and events for NRI students applying to IITs, NITs, and other premier engineering institutions in India.">
+  <meta name="keywords" content="events, webinars, seminars, NRI admissions, IIT, NIT, engineering college events">
+  <meta name="author" content="rkrrahman-786">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rkrrahman-786.github.io/events.html">
+  <meta property="og:title" content="Events & Seminars | EduAakashaa">
+  <meta property="og:description" content="Upcoming events and seminars for NRI engineering college admissions.">
+  <meta property="og:image" content="https://rkrrahman-786.github.io/assets/ea-logo.avif">
+  
+  <!-- Twitter Card -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://rkrrahman-786.github.io/events.html">
+  <meta property="twitter:title" content="Events & Seminars | EduAakashaa">
+  <meta property="twitter:description" content="Upcoming NRI admissions events and seminars.">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://rkrrahman-786.github.io/events.html">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/ea-logo.avif">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Events Page Specific Styles */
+    .events-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    .events-header {
+      text-align: center;
+      margin-bottom: 60px;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    .events-header h1 {
+      font-size: 3rem;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 15px;
+    }
+
+    .events-header p {
+      font-size: 1.1rem;
+      color: #888;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .event-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      border-radius: 12px;
+      padding: 30px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      animation: slideUp 0.6s ease backwards;
+    }
+
+    .event-card:nth-child(1) { animation-delay: 0.1s; }
+    .event-card:nth-child(2) { animation-delay: 0.2s; }
+    .event-card:nth-child(3) { animation-delay: 0.3s; }
+    .event-card:nth-child(4) { animation-delay: 0.4s; }
+
+    .event-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .event-card:hover {
+      border-color: rgba(255, 215, 0, 0.5);
+      box-shadow: 0 10px 40px rgba(255, 215, 0, 0.15);
+      transform: translateY(-5px);
+    }
+
+    .event-card:hover::before {
+      opacity: 1;
+    }
+
+    .event-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .event-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      color: #000;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .event-date {
+      font-size: 1.3rem;
+      color: #FFD700;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .event-time {
+      font-size: 0.95rem;
+      color: #aaa;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .event-time::before {
+      content: '🕐';
+    }
+
+    .event-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .event-description {
+      font-size: 0.95rem;
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .event-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      color: #999;
+    }
+
+    .event-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .event-register-btn {
+      width: 100%;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .event-register-btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+    }
+
+    .booking-section {
+      background: rgba(255, 215, 0, 0.05);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      border-radius: 12px;
+      padding: 50px;
+      margin-top: 60px;
+      text-align: center;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .booking-section h2 {
+      font-size: 2rem;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 15px;
+    }
+
+    .booking-section p {
+      font-size: 1rem;
+      color: #ccc;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .booking-form-container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 40px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #fff;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      border-radius: 6px;
+      color: #fff;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #FFD700;
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #666;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px 24px;
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .form-submit:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #FFD700;
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 40px;
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      gap: 12px;
+    }
+
+    .back-link::before {
+      content: '←';
+      font-size: 1.2rem;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .events-container {
+        padding: 40px 15px;
+      }
+
+      .events-header h1 {
+        font-size: 2rem;
+      }
+
+      .booking-form-container {
+        padding: 25px;
+      }
+
+      .booking-section {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor-orb" aria-hidden="true"></div>
+
+  <header data-animate>
+    <nav>
+      <a href="index.html" class="logo">
+        <img src="assets/ea-logo.avif" alt="EduAakashaa logo">
+        <span>EduAakashaa</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html#opportunities">Opportunities</a>
+        <a href="events.html">Events</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <a href="events.html" class="gold-btn">Book Event</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="events-container">
+      <a href="index.html" class="back-link">Back to Home</a>
+
+      <div class="events-header">
+        <h1>Upcoming Events & Seminars</h1>
+        <p>Join our exclusive webinars and seminars tailored for NRI students pursuing engineering in India</p>
+      </div>
+
+      <div class="events-grid">
+        <!-- Event 1 -->
+        <div class="event-card">
+          <span class="event-badge">Webinar</span>
+          <div class="event-date">Dec 15, 2025</div>
+          <div class="event-time">2:00 PM - 3:30 PM IST</div>
+          <h3 class="event-title">JOSAA Seat Allotment Decoded</h3>
+          <p class="event-description">
+            Understand the complete JOSAA seat allotment process, ranking system, and strategies to maximize your chances of getting your dream seat.
+          </p>
+          <div class="event-meta">
+            <div class="event-meta-item">👥 <strong>Speakers:</strong> IIT Counselors</div>
+            <div class="event-meta-item">📍 <strong>Mode:</strong> Online (Zoom)</div>
+            <div class="event-meta-item">🎓 <strong>Duration:</strong> 90 minutes</div>
+          </div>
+          <button class="event-register-btn" onclick="document.querySelector('.booking-section').scrollIntoView({behavior: 'smooth'})">Register Now</button>
+        </div>
+
+        <!-- Event 2 -->
+        <div class="event-card">
+          <span class="event-badge">Seminar</span>
+          <div class="event-date">Dec 22, 2025</div>
+          <div class="event-time">10:00 AM - 11:30 AM IST</div>
+          <h3 class="event-title">NRI Quota: Myths vs Reality</h3>
+          <p class="event-description">
+            Exclusive session on NRI admissions quota, eligibility criteria, and step-by-step process for NRI applicants applying to premier institutes.
+          </p>
+          <div class="event-meta">
+            <div class="event-meta-item">👥 <strong>Speakers:</strong> Admissions Directors</div>
+            <div class="event-meta-item">📍 <strong>Mode:</strong> Online (Teams)</div>
+            <div class="event-meta-item">🎓 <strong>Duration:</strong> 90 minutes</div>
+          </div>
+          <button class="event-register-btn" onclick="document.querySelector('.booking-section').scrollIntoView({behavior: 'smooth'})">Register Now</button>
+        </div>
+
+        <!-- Event 3 -->
+        <div class="event-card">
+          <span class="event-badge">Workshop</span>
+          <div class="event-date">Dec 29, 2025</div>
+          <div class="event-time">4:00 PM - 5:30 PM IST</div>
+          <h3 class="event-title">Engineering Cutoff Trends Analysis</h3>
+          <p class="event-description">
+            Deep dive into 5-year cutoff trends across IITs, NITs, and IIEST. Learn how to predict cutoffs and make informed choices.
+          </p>
+          <div class="event-meta">
+            <div class="event-meta-item">👥 <strong>Speakers:</strong> Data Analysts</div>
+            <div class="event-meta-item">📍 <strong>Mode:</strong> Online + In-Person</div>
+            <div class="event-meta-item">🎓 <strong>Duration:</strong> 90 minutes</div>
+          </div>
+          <button class="event-register-btn" onclick="document.querySelector('.booking-section').scrollIntoView({behavior: 'smooth'})">Register Now</button>
+        </div>
+
+        <!-- Event 4 -->
+        <div class="event-card">
+          <span class="event-badge">Panel Discussion</span>
+          <div class="event-date">Jan 10, 2026</div>
+          <div class="event-time">6:00 PM - 7:30 PM IST</div>
+          <h3 class="event-title">Career Pathways in Engineering</h3>
+          <p class="event-description">
+            Industry experts and alumni share insights on career opportunities, placements, and entrepreneurship in the tech sector.
+          </p>
+          <div class="event-meta">
+            <div class="event-meta-item">👥 <strong>Panelists:</strong> Industry Leaders & Alumni</div>
+            <div class="event-meta-item">📍 <strong>Mode:</strong> Online</div>
+            <div class="event-meta-item">🎓 <strong>Duration:</strong> 90 minutes</div>
+          </div>
+          <button class="event-register-btn" onclick="document.querySelector('.booking-section').scrollIntoView({behavior: 'smooth'})">Register Now</button>
+        </div>
+      </div>
+
+      <!-- Booking Section -->
+      <div class="booking-section">
+        <h2>Register for Events</h2>
+        <p>Fill out the form below to register for any of our upcoming events. We'll send you confirmation and event details via email.</p>
+        
+        <div class="booking-form-container">
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
+          </div>
+
+          <div class="form-group">
+            <label for="country">Country of Residence *</label>
+            <select id="country" name="country" required>
+              <option value="">Select your country</option>
+              <option value="USA">United States</option>
+              <option value="UK">United Kingdom</option>
+              <option value="Canada">Canada</option>
+              <option value="Australia">Australia</option>
+              <option value="UAE">United Arab Emirates</option>
+              <option value="Singapore">Singapore</option>
+              <option value="Malaysia">Malaysia</option>
+              <option value="India">India</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="event">Select Event(s) of Interest *</label>
+            <select id="event" name="event" required>
+              <option value="">Choose an event</option>
+              <option value="JOSAA Seat Allotment Decoded">JOSAA Seat Allotment Decoded (Dec 15)</option>
+              <option value="NRI Quota: Myths vs Reality">NRI Quota: Myths vs Reality (Dec 22)</option>
+              <option value="Engineering Cutoff Trends Analysis">Engineering Cutoff Trends Analysis (Dec 29)</option>
+              <option value="Career Pathways in Engineering">Career Pathways in Engineering (Jan 10)</option>
+              <option value="All Events">All Events</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Additional Comments</label>
+            <textarea id="message" name="message" placeholder="Any questions or specific topics you'd like us to cover?"></textarea>
+          </div>
+
+          <!-- Placeholder for Microsoft Forms Integration -->
+          <div style="background: rgba(255, 215, 0, 0.1); padding: 20px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+            <p style="color: #FFD700; font-weight: 600; margin: 0;">📋 Microsoft Forms Integration</p>
+            <p style="color: #999; margin: 8px 0 0 0; font-size: 0.9rem;">Connect to Microsoft Forms for advanced form handling and data collection</p>
+          </div>
+
+          <button class="form-submit">Submit Registration</button>
+          <p style="color: #666; font-size: 0.85rem; margin-top: 15px;">We'll send you event details and Zoom/Teams links via email</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer style="margin-top: 80px; padding: 40px 20px; text-align: center; border-top: 1px solid rgba(255, 215, 0, 0.1); color: #666;">
+    <p>&copy; 2025 EduAakashaa. All rights reserved. | <a href="index.html" style="color: #FFD700; text-decoration: none;">Back to Home</a></p>
+  </footer>
+
+  <script>
+    // Smooth scroll on page load if hash is present
+    window.addEventListener('load', () => {
+      if (window.location.hash) {
+        const element = document.querySelector(window.location.hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+
+    // Form submission handler (placeholder - integrate with Microsoft Forms)
+    document.querySelector('.form-submit').addEventListener('click', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const event = document.getElementById('event').value;
+
+      if (name && email && event) {
+        alert(`Thank you, ${name}! Your registration for "${event}" has been received. Check your email at ${email} for confirmation.`);
+        // Reset form
+        document.querySelectorAll('.booking-form-container input, .booking-form-container select, .booking-form-container textarea').forEach(el => el.value = '');
+      } else {
+        alert('Please fill in all required fields.');
+      }
+    });
+  </script>
+</body>
+</html>
