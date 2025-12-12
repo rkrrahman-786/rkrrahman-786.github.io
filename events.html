@@ -522,7 +522,8 @@ Feb 1 2026,BITSAT and VITEEE Masterclass,2:00 PM - 3:30 PM IST,Comprehensive gui
 Feb 8 2026,Scholarship and Financial Aid Guide,4:00 PM - 5:30 PM IST,Complete overview of scholarships financial aid and funding options available for NRI engineering students in India.,Financial Counselors,Online (Zoom),90 minutes,Seminar,Financial Aid
 Feb 15 2026,Hostel Life and Campus Culture,6:00 PM - 7:30 PM IST,Get insights into campus facilities hostel life cultural activities and student organizations at top engineering colleges.,College Administrators,Online,90 minutes,Webinar,Campus Life
 Feb 22 2026,Internship and Placement Opportunities,3:00 PM - 4:30 PM IST,Explore internship opportunities during your engineering degree and how to prepare for placements at premier companies.,Placement Officers,Online + In-Person,90 minutes,Workshop,Career
-Mar 1 2026,Research and Innovation at IITs,5:00 PM - 6:30 PM IST,Learn about research opportunities innovation labs and how to pursue research during your engineering studies.,IIT Professors,Online (Zoom),90 minutes,Webinar,Research`;
+Mar 1 2026,Research and Innovation at IITs,5:00 PM - 6:30 PM IST,Learn about research opportunities innovation labs and how to pursue research during your engineering studies.,IIT Professors,Online (Zoom),90 minutes,Webinar,Research
+Jan 2 2026,Asfaque Research Seminar,5:00 PM - 6:30 PM IST,Learn about research opportunities innovation labs and how to pursue research during your engineering studies.,IIT Professors,Online (Zoom),90 minutes,Webinar,Research`;
 
     // Parse CSV data
     function parseCSV(csv) {
@@ -544,6 +545,8 @@ Mar 1 2026,Research and Innovation at IITs,5:00 PM - 6:30 PM IST,Learn about res
 
     // Load and process CSV file
     async function loadEvents() {
+      let csvText = null;
+      
       try {
         // Try multiple paths to find the CSV file
         const paths = [
@@ -551,8 +554,6 @@ Mar 1 2026,Research and Innovation at IITs,5:00 PM - 6:30 PM IST,Learn about res
           '/events.csv',
           window.location.origin + '/events.csv'
         ];
-        
-        let csvText = null;
         
         for (const path of paths) {
           try {
@@ -569,25 +570,35 @@ Mar 1 2026,Research and Innovation at IITs,5:00 PM - 6:30 PM IST,Learn about res
         
         // Use fallback CSV if fetch fails
         if (!csvText) {
-          console.warn('⚠ Using fallback embedded CSV data');
+          console.warn('⚠ Using fallback embedded CSV data (fetch failed)');
           csvText = FALLBACK_CSV;
         }
         
+        if (!csvText || csvText.trim() === '') {
+          throw new Error('No CSV data available');
+        }
+        
         eventsData = parseCSV(csvText);
-        console.log(`✓ Parsed ${eventsData.length} events from CSV`);
+        console.log(`✓ Successfully parsed ${eventsData.length} events`);
         
         renderEvents();
         populateEventDropdown();
       } catch (error) {
-        console.error('Error loading events:', error);
+        console.error('❌ Error in loadEvents:', error);
+        console.error('CSV Text available:', !!csvText);
+        console.error('Events Data length:', eventsData.length);
+        
         // Display error message on page
         const container = document.getElementById('eventsContainer');
-        container.innerHTML = `
-          <div style="grid-column: 1/-1; padding: 40px; text-align: center; background: rgba(255, 100, 100, 0.1); border-radius: 8px; border: 1px solid rgba(255, 100, 100, 0.3);">
-            <h3 style="color: #ff6b6b; margin-top: 0;">⚠ Error Loading Events</h3>
-            <p style="color: #ccc; margin-bottom: 0;">${error.message}</p>
-          </div>
-        `;
+        if (container) {
+          container.innerHTML = `
+            <div style="grid-column: 1/-1; padding: 40px; text-align: center; background: rgba(255, 100, 100, 0.1); border-radius: 8px; border: 1px solid rgba(255, 100, 100, 0.3);">
+              <h3 style="color: #ff6b6b; margin-top: 0;">⚠ Error Loading Events</h3>
+              <p style="color: #ccc; margin-bottom: 10px;">${error.message}</p>
+              <p style="color: #999; margin: 0; font-size: 0.85rem;">Check browser console for details</p>
+            </div>
+          `;
+        }
       }
     }
 
